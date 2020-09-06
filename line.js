@@ -10,7 +10,7 @@ function createLineElement(x, y, length, angle) {
                + 'position: absolute; '
                + 'top: ' + y + 'px; '
                + 'left: ' + x + 'px; ';
-    line.setAttribute('style', styles);  
+    line.setAttribute('style', styles); 
     return line;
 }
 
@@ -25,55 +25,14 @@ function createCirlce(radius){
     cir.setAttribute('style', styles);  
     return cir;                
 }
-
-function Triangle(x1, y1, x2, y2, x3, y3) {
-    var a = x1 - x2,
-        b = y1 - y2,
-        c = Math.sqrt(a * a + b * b);
-
-    var sx = (x1 + x2) / 2,
-        sy = (y1 + y2) / 2;
-
-    var x = sx - c / 2,
-        y = sy;
-
-    var alpha = Math.PI - Math.atan2(-b, a);
-
-    document.body.appendChild(createLineElement(x, y, c, alpha));
-    var a = x2 - x3,
-        b = y2 - y3,
-        c = Math.sqrt(a * a + b * b);
-
-    var sx = (x2 + x3) / 2,
-        sy = (y2 + y3) / 2;
-
-    var x = sx - c / 2,
-        y = sy;
-
-    var alpha = Math.PI - Math.atan2(-b, a);
-
-    document.body.appendChild(createLineElement(x, y, c, alpha));
-    var a = x3 - x1,
-        b = y3 - y1,
-        c = Math.sqrt(a * a + b * b);
-
-    var sx = (x3 + x1) / 2,
-        sy = (y3 + y1) / 2;
-
-    var x = sx - c / 2,
-        y = sy;
-
-    var alpha = Math.PI - Math.atan2(-b, a);
-
-    document.body.appendChild(createLineElement(x, y, c, alpha));
-}
-function Line(x1,y1,x2,y2){
-        var a = x1 - x2,
-            b = y1 - y2,
+    
+function Line(x,y){
+        var a = x[0] - y[0],
+            b = x[1] - y[1],
             c = Math.sqrt(a * a + b * b);
     
-        var sx = (x1 + x2) / 2,
-            sy = (y1 + y2) / 2;
+        var sx = (x[0] + y[0]) / 2,
+            sy = (x[1] + y[1]) / 2;
     
         var x = sx - c / 2,
             y = sy;
@@ -84,13 +43,29 @@ function Line(x1,y1,x2,y2){
 }
 
 //Triangle
-Triangle(0 , 200 , 100 , 100, 200, 200);
+function Triangle(coordinates) {
+    document.body.appendChild(Line(coordinates[0],coordinates[1]));
+    document.body.appendChild(Line(coordinates[0],coordinates[2]));
+    document.body.appendChild(Line(coordinates[1],coordinates[2]));
+}
+var triangle = [[0,200],[100,100],[200,200]];
+//Triangle(triangle);
 
 // Square
-document.body.appendChild(Line(100,200,100,300));
-document.body.appendChild(Line(100,200,200,200));
-document.body.appendChild(Line(100,300,200,300));
-document.body.appendChild(Line(200,300,200,200));
+function Square(square){
+    document.body.appendChild(Line(square[0],square[1]));
+    document.body.appendChild(Line(square[0],square[2]));
+    document.body.appendChild(Line(square[1],square[3]));
+    document.body.appendChild(Line(square[2],square[3]));
+}
+var square = [[500,200],[500,300],[700,200],[700,300]];
+//Square(square);
+
+//Circle
+
+//document.body.appendChild(createCirlce(190));
 
 
-document.body.appendChild(createCirlce(190));
+
+
+
