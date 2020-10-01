@@ -1,6 +1,7 @@
 function createLineElement(x, y, length, angle) {
     var line = document.createElement("div");
-    var styles = 'border: 1px solid black; '
+    var styles = 'display : relative;'
+               + 'border: 1px solid black; '
                + 'width: ' + length + 'px; '
                + 'height: 0px; '
                + '-moz-transform: rotate(' + angle + 'rad); '
@@ -16,7 +17,8 @@ function createLineElement(x, y, length, angle) {
 
 function createCirlce(radius){
     var cir = document.createElement("div");
-    var styles = 'border: 3px solid green;'+
+    var styles = 'display : relative;'+
+                    'border: 3px solid green;'+
                     'border-radius: '+ radius+'%;'+
                     'width: 500px;'+
                     'height: 500px;'+
